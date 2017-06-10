@@ -1,0 +1,8 @@
+.card .card-content img{
+	width: 10em;
+}
+.card .card-content h6{
+	background-color: rgba(103,58,183,0.41);
+	padding: 1%;
+	width: 100%
+}
