@@ -64,7 +64,7 @@ var crearModalPokemons = function (pokemonColor, pokemonHabitat, pokemonShape, p
 		.replace("__color__", pokemonColor.name)
 		.replace("__shape__", pokemonShape.name)
 		.replace("__genera__", pokemonGenera.genus).replace("__nombre-modal__", nombrePokemon).replace("__nombre-imagen__", nombrePokemon ).replace("__nombre__", nombrePokemon).replace("__habitat__", pokemonHabitat);
-
+	$('.modal').modal();
 	$("#modals").html(plantillaModalDefinitiva);
 };
 
