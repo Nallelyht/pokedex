@@ -9,18 +9,23 @@ var plantillaPokemons = '<div class="col s6 m3" data-url="//pokeapi.co/api/v2/po
 var cargarPagina = function () {
 	$('.btn-floating').sideNav();
 	$('.modal').modal();
+	$("#next").click(siguientesPokemons)
 	$.getJSON("//pokeapi.co/api/v2/pokemon/", function (response) {
 		var pokemons = response.results;
+		var urlNext = response.next;
+		$("#next").attr("data-url", urlNext);
 		crearPokemons(pokemons);
-
-		
-		//letraMayuscula();
-
 	});
 
 };
 
-
+var siguientesPokemons = function (){
+	var url = $("#next").data("url");
+	$.getJSON(url, function(response){
+		var pokemons =response.results;
+		crearPokemons(pokemons)
+	});
+};
 var crearPokemons = function (pokemons) {
 	var plantillaFinal = "";
 
@@ -42,11 +47,10 @@ var letraMayuscula = function () {
 var datosPokemon = function () {
 
 	var url = $(this).data("url");
-	
+
 	var nombrePokemon = $(this)[0].textContent
-	$.getJSON(url,
-						function (response) {
-console.log(response);
+	$.getJSON(url,function (response) {
+		console.log(response);
 		var pokemonColor = response.color;
 		var pokemonGenera = response.genera[0];
 		var pokemonHabitat = response.habitat.name;
@@ -58,17 +62,6 @@ console.log(response);
 };
 
 var crearModalPokemons = function (nombreImagen, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
-/*	var plantillaModalDefinitiva = "";
-
-	plantillaModalDefinitiva += plantillaModal
-
-		.replace("__color__", pokemonColor.name)
-		.replace("__shape__", pokemonShape.name)
-		.replace("__genera__", pokemonGenera.genus).replace("__nombre-modal__", nombrePokemon).replace("__nombre-imagen__", nombrePokemon ).replace("__nombre__", nombrePokemon).replace("__habitat__", pokemonHabitat);
-	;
-	$("body").append(plantillaModalDefinitiva);
-	$("#modal-" + nombrePokemon).modal('open'); */
-
 	$("#imagen-pokemon").attr("src","assets/img/"+ nombreImagen +".png")
 	$("#nombre-pokemon").text(nombrePokemon);
 	$("#color-pokemon").text(pokemonColor.name);
