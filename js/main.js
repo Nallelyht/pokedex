@@ -1,8 +1,8 @@
 /*Plantillas para agregar dinamicamente pokemones y sus modales*/
 
-var plantillaPokemons = '<div class="col s6 m3" data-url="http://pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + '<img class="responsive-img center" src="assets/img/__nombre-pokemon__.png" alt="img-pokemon">' + '<h6><a href="#modal">__nombre__</a></h6>' + '</div>' + '</div>' + '</div>';
+var plantillaPokemons = '<div class="col s6 m3" data-url="http://pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + 
+		'<img class="responsive-img center" src="assets/img/__nombre-pokemon__.png" alt="img-pokemon">' + '<h6><a href="#modal">__nombre__</a></h6>' + '</div>' + '</div>' + '</div>';
 
-var plantillaModal = '<div id="modal-__nombre-modal__" class="modal">' + '<span class="material-icons modal-close right">close</span>' + '<div class="modal-content center-align">' + '<img class="responsive-img" src="assets/img/__nombre-imagen__.png" alt="pokemon-modal">' + '<h4>__nombre__</h4>' + '<p>Color: __color__, Shape: __shape__, Genera: __genera__, Habitat: __habitat__</p>' + '</div>' + '</div>';
 
 
 
@@ -13,6 +13,7 @@ var cargarPagina = function () {
 		var pokemons = response.results;
 		crearPokemons(pokemons);
 
+		
 		//letraMayuscula();
 
 	});
@@ -41,11 +42,11 @@ var letraMayuscula = function () {
 var datosPokemon = function () {
 
 	var url = $(this).data("url");
-	console.log($(this));
+	
 	var nombrePokemon = $(this)[0].textContent
 	$.getJSON(url,
 						function (response) {
-
+console.log(response);
 		var pokemonColor = response.color;
 		var pokemonGenera = response.genera[0];
 		var pokemonHabitat = response.habitat.name;
@@ -56,7 +57,7 @@ var datosPokemon = function () {
 
 };
 
-var crearModalPokemons = function (nombrePokemon, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
+var crearModalPokemons = function (nombreImagen, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
 /*	var plantillaModalDefinitiva = "";
 
 	plantillaModalDefinitiva += plantillaModal
@@ -67,7 +68,7 @@ var crearModalPokemons = function (nombrePokemon, nombrePokemon, pokemonColor, p
 	;
 	$("body").append(plantillaModalDefinitiva);
 	$("#modal-" + nombrePokemon).modal('open'); */
-	$("#imagen-pokemon").attr("src","assets/img/"+ nombrePokemon +".png")
+	$("#imagen-pokemon").attr("src","assets/img/"+nombreImagen+".png")
 	$("#nombre-pokemon").text(nombrePokemon);
 	$("#color-pokemon").text(pokemonColor.name);
 	$("#habitat-pokemon").text(pokemonHabitat);
