@@ -1,6 +1,6 @@
 /*Plantillas para agregar dinamicamente pokemones y sus modales*/
 
-var plantillaPokemons = '<div class="col s6 m3" data-url="http://pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + 
+var plantillaPokemons = '<div class="col s6 m3" data-url="//pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + 
 		'<img class="responsive-img center" src="assets/img/__nombre-pokemon__.png" alt="img-pokemon">' + '<h6><a href="#modal">__nombre__</a></h6>' + '</div>' + '</div>' + '</div>';
 
 
