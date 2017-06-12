@@ -1,6 +1,6 @@
 /*Plantillas para agregar dinamicamente pokemones y sus modales*/
 
-var plantillaPokemons = '<div class="col s6 m3" data-url="http://pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + '<img class="responsive-img center" src="assets/img/__nombre-pokemon__.png" alt="img-pokemon">' + '<h6><a href="#modal-__nombre-modal__">__nombre__</a></h6>' + '</div>' + '</div>' + '</div>';
+var plantillaPokemons = '<div class="col s6 m3" data-url="http://pokeapi.co/api/v2/pokemon-species/__numero-pokemon__/">' + '<div class="card hoverable pokemones">' + '<div class= "card-content center-align">' + '<img class="responsive-img center" src="assets/img/__nombre-pokemon__.png" alt="img-pokemon">' + '<h6><a href="#modal">__nombre__</a></h6>' + '</div>' + '</div>' + '</div>';
 
 var plantillaModal = '<div id="modal-__nombre-modal__" class="modal">' + '<span class="material-icons modal-close right">close</span>' + '<div class="modal-content center-align">' + '<img class="responsive-img" src="assets/img/__nombre-imagen__.png" alt="pokemon-modal">' + '<h4>__nombre__</h4>' + '<p>Color: __color__, Shape: __shape__, Genera: __genera__, Habitat: __habitat__</p>' + '</div>' + '</div>';
 
@@ -9,7 +9,6 @@ var plantillaModal = '<div id="modal-__nombre-modal__" class="modal">' + '<span 
 var cargarPagina = function () {
 	$('.btn-floating').sideNav();
 	$('.modal').modal();
-
 	$.getJSON("//pokeapi.co/api/v2/pokemon/", function (response) {
 		var pokemons = response.results;
 		crearPokemons(pokemons);
@@ -42,6 +41,7 @@ var letraMayuscula = function () {
 var datosPokemon = function () {
 
 	var url = $(this).data("url");
+	console.log($(this));
 	var nombrePokemon = $(this)[0].textContent
 	$.getJSON(url,
 						function (response) {
@@ -51,21 +51,28 @@ var datosPokemon = function () {
 		var pokemonHabitat = response.habitat.name;
 		var pokemonShape = response.shape;
 
-		crearModalPokemons(pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera, nombrePokemon);
+		crearModalPokemons(nombrePokemon, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera);
 	});
 
 };
 
-var crearModalPokemons = function (pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera, nombrePokemon) {
-	var plantillaModalDefinitiva = "";
+var crearModalPokemons = function (nombrePokemon, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
+/*	var plantillaModalDefinitiva = "";
 
 	plantillaModalDefinitiva += plantillaModal
 
 		.replace("__color__", pokemonColor.name)
 		.replace("__shape__", pokemonShape.name)
 		.replace("__genera__", pokemonGenera.genus).replace("__nombre-modal__", nombrePokemon).replace("__nombre-imagen__", nombrePokemon ).replace("__nombre__", nombrePokemon).replace("__habitat__", pokemonHabitat);
-	$('.modal').modal();
-	$("#modals").html(plantillaModalDefinitiva);
+	;
+	$("body").append(plantillaModalDefinitiva);
+	$("#modal-" + nombrePokemon).modal('open'); */
+	$("#imagen-pokemon").attr("src","assets/img/"+ nombrePokemon +".png")
+	$("#nombre-pokemon").text(nombrePokemon);
+	$("#color-pokemon").text(pokemonColor.name);
+	$("#habitat-pokemon").text(pokemonHabitat);
+	$("#shape-pokemon").text(pokemonShape.name);
+	$("#genera-pokemon").text(pokemonGenera.genus);
 };
 
 $(document).on("click", ".m3", datosPokemon);
