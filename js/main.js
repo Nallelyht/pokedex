@@ -69,7 +69,7 @@ var crearModalPokemons = function (nombreImagen, nombrePokemon, pokemonColor, po
 	$("body").append(plantillaModalDefinitiva);
 	$("#modal-" + nombrePokemon).modal('open'); */
 
-	$("#imagen-pokemon").attr("src","assets/img/"+nombreImagen+".png")
+	$("#imagen-pokemon").attr("src","assets/img/"+ nombreImagen +".png")
 	$("#nombre-pokemon").text(nombrePokemon);
 	$("#color-pokemon").text(pokemonColor.name);
 	$("#habitat-pokemon").text(pokemonHabitat);
@@ -78,4 +78,4 @@ var crearModalPokemons = function (nombreImagen, nombrePokemon, pokemonColor, po
 };
 
 $(document).on("click", ".m3", datosPokemon);
-$(document).ready(cargarPagina);
+$(document).ready(cargarPagina); 
