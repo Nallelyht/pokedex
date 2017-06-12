@@ -56,7 +56,7 @@ var datosPokemon = function () {
 
 };
 
-var crearModalPokemons = function (nombrePokemon, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
+var crearModalPokemons = function (nombreImagen, nombrePokemon, pokemonColor, pokemonHabitat, pokemonShape, pokemonGenera) {
 /*	var plantillaModalDefinitiva = "";
 
 	plantillaModalDefinitiva += plantillaModal
@@ -67,7 +67,7 @@ var crearModalPokemons = function (nombrePokemon, nombrePokemon, pokemonColor, p
 	;
 	$("body").append(plantillaModalDefinitiva);
 	$("#modal-" + nombrePokemon).modal('open'); */
-	$("#imagen-pokemon").attr("src","assets/img/"+ nombrePokemon +".png")
+	$("#imagen-pokemon").attr("src","assets/img/"+ nombreImagen +".png")
 	$("#nombre-pokemon").text(nombrePokemon);
 	$("#color-pokemon").text(pokemonColor.name);
 	$("#habitat-pokemon").text(pokemonHabitat);
